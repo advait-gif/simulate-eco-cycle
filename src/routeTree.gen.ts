@@ -11,7 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgentsRouteImport } from './routes/agents'
+import { Route as CentersRouteImport } from './routes/centers'
+import { Route as ControlRouteImport } from './routes/control'
 import { Route as PickupsRouteImport } from './routes/pickups'
+import { Route as RecyclingRouteImport } from './routes/recycling'
+import { Route as RewardsRouteImport } from './routes/rewards'
+import { Route as VerifySimulationCertificateIdRouteImport } from './routes/verify.simulation.$certificateId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +28,111 @@ const AgentsRoute = AgentsRouteImport.update({
   path: '/agents',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CentersRoute = CentersRouteImport.update({
+  id: '/centers',
+  path: '/centers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ControlRoute = ControlRouteImport.update({
+  id: '/control',
+  path: '/control',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PickupsRoute = PickupsRouteImport.update({
   id: '/pickups',
   path: '/pickups',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RecyclingRoute = RecyclingRouteImport.update({
+  id: '/recycling',
+  path: '/recycling',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RewardsRoute = RewardsRouteImport.update({
+  id: '/rewards',
+  path: '/rewards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerifySimulationCertificateIdRoute =
+  VerifySimulationCertificateIdRouteImport.update({
+    id: '/verify/simulation/$certificateId',
+    path: '/verify/simulation/$certificateId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/centers': typeof CentersRoute
+  '/control': typeof ControlRoute
   '/pickups': typeof PickupsRoute
+  '/recycling': typeof RecyclingRoute
+  '/rewards': typeof RewardsRoute
+  '/verify/simulation/$certificateId': typeof VerifySimulationCertificateIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/centers': typeof CentersRoute
+  '/control': typeof ControlRoute
   '/pickups': typeof PickupsRoute
+  '/recycling': typeof RecyclingRoute
+  '/rewards': typeof RewardsRoute
+  '/verify/simulation/$certificateId': typeof VerifySimulationCertificateIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/centers': typeof CentersRoute
+  '/control': typeof ControlRoute
   '/pickups': typeof PickupsRoute
+  '/recycling': typeof RecyclingRoute
+  '/rewards': typeof RewardsRoute
+  '/verify/simulation/$certificateId': typeof VerifySimulationCertificateIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/agents' | '/pickups'
+  fullPaths:
+    | '/'
+    | '/agents'
+    | '/centers'
+    | '/control'
+    | '/pickups'
+    | '/recycling'
+    | '/rewards'
+    | '/verify/simulation/$certificateId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/agents' | '/pickups'
-  id: '__root__' | '/' | '/agents' | '/pickups'
+  to:
+    | '/'
+    | '/agents'
+    | '/centers'
+    | '/control'
+    | '/pickups'
+    | '/recycling'
+    | '/rewards'
+    | '/verify/simulation/$certificateId'
+  id:
+    | '__root__'
+    | '/'
+    | '/agents'
+    | '/centers'
+    | '/control'
+    | '/pickups'
+    | '/recycling'
+    | '/rewards'
+    | '/verify/simulation/$certificateId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AgentsRoute: typeof AgentsRoute
+  CentersRoute: typeof CentersRoute
+  ControlRoute: typeof ControlRoute
   PickupsRoute: typeof PickupsRoute
+  RecyclingRoute: typeof RecyclingRoute
+  RewardsRoute: typeof RewardsRoute
+  VerifySimulationCertificateIdRoute: typeof VerifySimulationCertificateIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +151,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/centers': {
+      id: '/centers'
+      path: '/centers'
+      fullPath: '/centers'
+      preLoaderRoute: typeof CentersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/control': {
+      id: '/control'
+      path: '/control'
+      fullPath: '/control'
+      preLoaderRoute: typeof ControlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pickups': {
       id: '/pickups'
       path: '/pickups'
       fullPath: '/pickups'
       preLoaderRoute: typeof PickupsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recycling': {
+      id: '/recycling'
+      path: '/recycling'
+      fullPath: '/recycling'
+      preLoaderRoute: typeof RecyclingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rewards': {
+      id: '/rewards'
+      path: '/rewards'
+      fullPath: '/rewards'
+      preLoaderRoute: typeof RewardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verify/simulation/$certificateId': {
+      id: '/verify/simulation/$certificateId'
+      path: '/verify/simulation/$certificateId'
+      fullPath: '/verify/simulation/$certificateId'
+      preLoaderRoute: typeof VerifySimulationCertificateIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +199,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AgentsRoute: AgentsRoute,
+  CentersRoute: CentersRoute,
+  ControlRoute: ControlRoute,
   PickupsRoute: PickupsRoute,
+  RecyclingRoute: RecyclingRoute,
+  RewardsRoute: RewardsRoute,
+  VerifySimulationCertificateIdRoute: VerifySimulationCertificateIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
