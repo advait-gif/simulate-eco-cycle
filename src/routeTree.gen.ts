@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgentsRouteImport } from './routes/agents'
+import { Route as CentersRouteImport } from './routes/centers'
 import { Route as PickupsRouteImport } from './routes/pickups'
+import { Route as RecyclingRouteImport } from './routes/recycling'
+import { Route as RewardsRouteImport } from './routes/rewards'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +26,75 @@ const AgentsRoute = AgentsRouteImport.update({
   path: '/agents',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CentersRoute = CentersRouteImport.update({
+  id: '/centers',
+  path: '/centers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PickupsRoute = PickupsRouteImport.update({
   id: '/pickups',
   path: '/pickups',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecyclingRoute = RecyclingRouteImport.update({
+  id: '/recycling',
+  path: '/recycling',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RewardsRoute = RewardsRouteImport.update({
+  id: '/rewards',
+  path: '/rewards',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/centers': typeof CentersRoute
   '/pickups': typeof PickupsRoute
+  '/recycling': typeof RecyclingRoute
+  '/rewards': typeof RewardsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/centers': typeof CentersRoute
   '/pickups': typeof PickupsRoute
+  '/recycling': typeof RecyclingRoute
+  '/rewards': typeof RewardsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/centers': typeof CentersRoute
   '/pickups': typeof PickupsRoute
+  '/recycling': typeof RecyclingRoute
+  '/rewards': typeof RewardsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/agents' | '/pickups'
+  fullPaths:
+    '/' | '/agents' | '/centers' | '/pickups' | '/recycling' | '/rewards'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/agents' | '/pickups'
-  id: '__root__' | '/' | '/agents' | '/pickups'
+  to: '/' | '/agents' | '/centers' | '/pickups' | '/recycling' | '/rewards'
+  id:
+    | '__root__'
+    | '/'
+    | '/agents'
+    | '/centers'
+    | '/pickups'
+    | '/recycling'
+    | '/rewards'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AgentsRoute: typeof AgentsRoute
+  CentersRoute: typeof CentersRoute
   PickupsRoute: typeof PickupsRoute
+  RecyclingRoute: typeof RecyclingRoute
+  RewardsRoute: typeof RewardsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +113,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/centers': {
+      id: '/centers'
+      path: '/centers'
+      fullPath: '/centers'
+      preLoaderRoute: typeof CentersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pickups': {
       id: '/pickups'
       path: '/pickups'
       fullPath: '/pickups'
       preLoaderRoute: typeof PickupsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recycling': {
+      id: '/recycling'
+      path: '/recycling'
+      fullPath: '/recycling'
+      preLoaderRoute: typeof RecyclingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rewards': {
+      id: '/rewards'
+      path: '/rewards'
+      fullPath: '/rewards'
+      preLoaderRoute: typeof RewardsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +147,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AgentsRoute: AgentsRoute,
+  CentersRoute: CentersRoute,
   PickupsRoute: PickupsRoute,
+  RecyclingRoute: RecyclingRoute,
+  RewardsRoute: RewardsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

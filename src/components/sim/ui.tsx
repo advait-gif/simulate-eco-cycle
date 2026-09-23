@@ -71,7 +71,17 @@ export function PopButton({
   );
 }
 
-export function Stat({ label, value, sub, tone }: { label: string; value: ReactNode; sub?: string; tone?: string }) {
+export function Stat({
+  label,
+  value,
+  sub,
+  tone,
+}: {
+  label: string;
+  value: ReactNode;
+  sub?: string | undefined;
+  tone?: string | undefined;
+}) {
   return (
     <div className="ec-card p-5">
       <div className="text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">{label}</div>
