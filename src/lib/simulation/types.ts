@@ -78,19 +78,19 @@ export interface PickupItem {
 export interface Pickup {
   id: string;
   customerId: string;
-  agentId?: string;
+  agentId?: string | undefined;
   centerId: string;
   items: PickupItem[];
   estimatedKg: number;
-  actualKg?: number;
+  actualKg?: number | undefined;
   status: PickupStatus;
   auto: boolean;
   progress: number;
   nextStepAt: number;
   createdAt: number;
-  completedAt?: number;
-  scenario?: string;
-  note?: string;
+  completedAt?: number | undefined;
+  scenario?: string | undefined;
+  note?: string | undefined;
   environment: typeof ENVIRONMENT;
 }
 
@@ -102,7 +102,7 @@ export interface InventoryItem {
   weightKg: number;
   condition: "Refurbishable" | "Recyclable" | "Hazardous" | "Non-Recyclable";
   status: "STORED" | "SORTED" | "BATCHED" | "PROCESSED";
-  batchId?: string;
+  batchId?: string | undefined;
   environment: typeof ENVIRONMENT;
 }
 
@@ -117,14 +117,14 @@ export interface Batch {
   id: string;
   centerId: string;
   recyclerId: string;
-  customerId?: string;
+  customerId?: string | undefined;
   inputKg: number;
-  sorting?: Sorting;
-  materials?: Record<string, number>;
-  recoveredKg?: number;
-  co2eKg?: number;
+  sorting?: Sorting | undefined;
+  materials?: Record<string, number> | undefined;
+  recoveredKg?: number | undefined;
+  co2eKg?: number | undefined;
   status: "CREATED" | "SORTED" | "PROCESSING" | "COMPLETED";
-  certificateId?: string;
+  certificateId?: string | undefined;
   createdAt: number;
   environment: typeof ENVIRONMENT;
 }
@@ -176,7 +176,7 @@ export interface SimEvent {
   type: string;
   message: string;
   at: number;
-  refId?: string;
+  refId?: string | undefined;
   environment: typeof ENVIRONMENT;
 }
 
